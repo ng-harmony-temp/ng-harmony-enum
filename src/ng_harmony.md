@@ -77,26 +77,23 @@ export class EnumService extends Service {
 }
 
 export class Enum extends Service {
-    uid;
-    name;
-
-    constructor (name) {
-        super();
-
-        this.name = name;
-        this.EnumService.generate(this);
-    }
+    uid = this.EnumService.generate(this);
+    name = this.constructor.name;
 }
 Enum.$inject = "EnumService";
 
-export class Plug {}
+export class Plug extends Enum {}
 
-export class IOPlug extends Plug {
-    IN: Enum;
-    OUT: Enum;
+export class EventPlug extends Plug {
+    event = {
+        selector: null,
+        nthChild: null
+        trigger: null
+    };
 }
 ```
 
 ## CHANGELOG
 
+*v0.1.1* Plug, EventPlug
 *v0.1.0* EnumService, StateEnum
